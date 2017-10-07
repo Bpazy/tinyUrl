@@ -6,6 +6,8 @@ import (
 	"github.com/BurntSushi/toml"
 	"os"
 	"strings"
+	"fmt"
+	"os/user"
 )
 
 var (
@@ -28,7 +30,11 @@ type DbConf struct {
 func readDbConf() (mysqlConfig string) {
 	mysqlConfig = "userName:passwd@tcp(ipPort)/databaseName?charset=utf8"
 	var dbConf DbConf
-	f, err := os.Open("db.toml")
+
+	u, err := user.Current()
+	checkErr(err)
+
+	f, err := os.Open(fmt.Sprintf("%s/.tinyUrl/db.toml", u.HomeDir))
 	checkErr(err)
 
 	if _, err = toml.DecodeReader(f, &dbConf); err != nil {
