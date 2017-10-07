@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <script src="static/index.css"></script>
+    <link rel="stylesheet" href="static/index.css">
+</head>
+
+<body>
+<div id="app">
+    <div class="content">
+        <div class="inputWrapper">
+            <p>请输入长网址:</p>
+            <label>
+                <input type="text" class="urlInput" v-model="longUrl">
+            </label>
+        </div>
+        <div class="buttonWrapper">
+            <button @click="tiny()">缩短网址</button>
+        </div>
+        <div class="resultWrapper" v-if="result">
+            <span>短网址: </span>
+            <span>${result}</span>
+        </div>
+    </div>
+</div>
+</body>
+<script src="static/index.js"></script>
+</html>

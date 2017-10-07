@@ -1,0 +1,26 @@
+.content {
+    width: 100%;
+    text-align: center;
+}
+
+.urlInput {
+    outline: 0;
+    width: 432px;
+    height: 17px;
+    font-size: 14px;
+    padding: 4px 5px 0;
+}
+
+.inputWrapper {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+}
+
+.buttonWrapper {
+    margin-top: 20px;
+}
+
+.resultWrapper {
+    margin-top: 20px;
+}
