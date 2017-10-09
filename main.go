@@ -8,6 +8,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"github.com/thinkerou/favicon"
 )
 
 func main() {
@@ -17,6 +18,7 @@ func main() {
 
 	router := gin.New()
 	router.Use(gin.Recovery())
+	router.Use(favicon.New("./static/"))
 
 	if gin.Mode() == gin.ReleaseMode {
 		os.MkdirAll(filepath.Dir(*logFile), os.ModePerm)
