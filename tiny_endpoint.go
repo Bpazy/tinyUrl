@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"strings"
 )
 
 type DwzStruct struct {
@@ -28,6 +29,9 @@ func tinyEndpoint(c *gin.Context) {
 func restoreEndpoint(c *gin.Context) {
 	tinyUrl := c.Param("tinyUrl")
 	if dwz, err := queryDwzWithTinyUrl(tinyUrl); err == nil {
+		if !strings.HasPrefix(dwz.LongUrl, "http") {
+			c.Redirect(http.StatusFound, "http://"+dwz.LongUrl)
+		}
 		c.Redirect(http.StatusFound, dwz.LongUrl)
 	}
 }
