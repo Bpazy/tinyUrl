@@ -15,14 +15,21 @@ func main() {
 	logFile := flag.String("log", "tinyUrl.log", "Server log file. Only work in release mode.")
 	flag.Parse()
 
+	router := gin.New()
+	router.Use(gin.Recovery())
+
 	if gin.Mode() == gin.ReleaseMode {
 		os.MkdirAll(filepath.Dir(*logFile), os.ModePerm)
 		f, err := os.Create(*logFile)
 		checkErr(err)
-		log.SetOutput(io.MultiWriter(os.Stdout, f))
+
+		writer := io.MultiWriter(os.Stdout, f)
+		log.SetOutput(writer)
+		router.Use(gin.LoggerWithWriter(writer))
+	} else {
+		router.Use(gin.Logger())
 	}
 
-	router := gin.Default()
 	router.LoadHTMLGlob("templates/*")
 	router.Static("/static", "./static")
 
