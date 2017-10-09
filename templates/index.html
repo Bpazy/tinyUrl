@@ -21,7 +21,9 @@
         </div>
         <div class="resultWrapper" v-if="result">
             <span>短网址: </span>
-            <span>${result}</span>
+            <label>
+                <input type="text" v-model="result" ref="output" @click="$refs.output.select()">
+            </label>
         </div>
     </div>
 </div>

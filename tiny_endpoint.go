@@ -29,7 +29,7 @@ func tinyEndpoint(c *gin.Context) {
 func restoreEndpoint(c *gin.Context) {
 	tinyUrl := c.Param("tinyUrl")
 	if dwz, err := queryDwzWithTinyUrl(tinyUrl); err == nil {
-		if !strings.HasPrefix(dwz.LongUrl, "http") {
+		if !strings.HasPrefix(dwz.LongUrl, "http://") || strings.HasPrefix(dwz.LongUrl, "https://") {
 			c.Redirect(http.StatusFound, "http://"+dwz.LongUrl)
 		}
 		c.Redirect(http.StatusFound, dwz.LongUrl)
