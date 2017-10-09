@@ -38,5 +38,5 @@ func main() {
 		v1.POST("/tiny", tinyEndpoint)
 		v1.GET("/r/:tinyUrl", restoreEndpoint)
 	}
-	router.Run(*port)
+	log.Fatal(router.Run(*port))
 }
