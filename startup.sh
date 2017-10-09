@@ -1,2 +1,3 @@
 #!/bin/bash
-nohup ./tinyUrl -port :11000 > tinyUrl.log 2>&1 &
+cd $(dirname "$0")
+nohup ./tinyUrl -port :11000 > /dev/null 2>&1 &
