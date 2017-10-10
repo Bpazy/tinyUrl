@@ -13,8 +13,8 @@ var app = new Vue({
             }).then(function (result) {
                 data = result.data;
                 if (location.port)
-                    return self.result = document.domain + ':' + location.port + '/v1/r/' + data.tinyUrl;
-                return self.result = document.domain + '/v1/r/' + data.tinyUrl;
+                    return self.result = location.protocol + '//' + document.domain + ':' + location.port + '/v1/r/' + data.tinyUrl;
+                return self.result = location.protocol + '//' + document.domain + '/v1/r/' + data.tinyUrl;
             })
         }
     }
