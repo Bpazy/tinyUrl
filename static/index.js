@@ -1,6 +1,5 @@
-var app = new Vue({
+new Vue({
     el: '#app',
-    delimiters: ['${', '}'],
     data: {
         longUrl: '',
         result: ''

@@ -17,11 +17,11 @@ func queryDwzWithTinyUrl(tinyUrl string) (*DwzStruct, error) {
 	if err := db.QueryRow(querySql, tinyUrl).Scan(&dwz.Id, &dwz.TinyUrl, &dwz.LongUrl); err != nil {
 		return nil, err
 	}
-	log.Println(dwz)
 	return dwz, nil
 }
 
 func saveDwz(dwz *DwzStruct) {
+	log.Printf("Save tiny url: %+v\n", dwz)
 	insertSql, err := db.Prepare("INSERT INTO t_tiny_url (ID, TINY_URL, LONG_URL, CREATE_TIME) VALUES (?, ?, ?, NOW())")
 	checkErr(err)
 	_, err = insertSql.Exec(dwz.Id, dwz.TinyUrl, dwz.LongUrl)
